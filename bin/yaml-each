@@ -10,7 +10,7 @@ parsed = Dorian::Arguments.parse(version: { alias: :v }, help: { alias: :h })
 abort parsed.help if parsed.options.help
 
 if parsed.options.version
-  abort File.read(File.expand_path("../../VERSION", __FILE__))
+  abort File.read(File.expand_path("../VERSION", __dir__))
 end
 
 inputs = parsed.files.map { |file| File.read(file) }
@@ -20,5 +20,5 @@ inputs.each do |input|
   YAML
     .safe_load(input)
     .to_deep_struct
-    .each { |it| eval(parsed.arguments.join(" ")) }
+    .each { |_it| eval(parsed.arguments.join(" ")) }
 end
