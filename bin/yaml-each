@@ -20,5 +20,5 @@ inputs.each do |input|
   YAML
     .safe_load(input)
     .to_deep_struct
-    .each { |_it| eval(parsed.arguments.join(" ")) }
+    .each { |it| eval(parsed.arguments.join(" ")) }
 end
